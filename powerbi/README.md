@@ -4,6 +4,8 @@ This folder rebuilds the top of the Streamlit dashboard as a single Power BI rep
 The page has filters, four KPI cards, and the two charts behind insights 1 and 2 in the
 main README.
 
+![Finished Power BI page](zomato_overview.png)
+
 | File | What it is |
 |---|---|
 | [`load_data.pq`](load_data.pq) | Power Query script. Loads the cleaned CSV from this repo and adds a price-band column. |

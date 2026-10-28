@@ -81,9 +81,14 @@ streamlit run zomato.py
 
 ## Power BI version
 
-The [`powerbi/`](powerbi/) folder rebuilds the "Does price buy a better rating?" view in
-Power BI. It has a Power Query script that loads the data from this repo, the DAX
-measures, a matching theme, and build steps with numbers to check against.
+The same "Does price buy a better rating?" view, rebuilt in Power BI. Its numbers match
+the Streamlit app exactly.
+
+![Power BI report page](powerbi/zomato_overview.png)
+
+The [`powerbi/`](powerbi/) folder has everything needed to rebuild it: a Power Query
+script that loads the data from this repo, the DAX measures, a matching theme, and build
+steps for Power BI Desktop or the web, with numbers to check against.
 
 ## Project structure
 
