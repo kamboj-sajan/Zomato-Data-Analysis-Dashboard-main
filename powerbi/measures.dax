@@ -10,3 +10,28 @@ Top Rated Count = CALCULATE ( COUNTROWS ( Restaurants ), Restaurants[rate] >= 4 
 Rated 4.0+ % = DIVIDE ( [Top Rated Count], [Restaurant Count] )      // Percentage, 0 places
 
 Median Cost for Two = MEDIAN ( Restaurants[cost_for_two] )           // Custom format: ₹#,0
+
+
+// ---- Calculated columns: only if you loaded the CSV with the Text/CSV connector ----
+// load_data.pq already adds these two columns, so skip them if you used it.
+// Add with New column (not New measure).
+
+Price Band =
+SWITCH (
+    TRUE (),
+    Restaurants[cost_for_two] <= 300, "≤ ₹300",
+    Restaurants[cost_for_two] <= 500, "₹301–500",
+    Restaurants[cost_for_two] <= 800, "₹501–800",
+    Restaurants[cost_for_two] <= 1500, "₹801–1,500",
+    "> ₹1,500"
+)
+
+Price Band Order =
+SWITCH (
+    TRUE (),
+    Restaurants[cost_for_two] <= 300, 1,
+    Restaurants[cost_for_two] <= 500, 2,
+    Restaurants[cost_for_two] <= 800, 3,
+    Restaurants[cost_for_two] <= 1500, 4,
+    5
+)

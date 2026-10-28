@@ -1,6 +1,7 @@
 // Power Query (M) — loads the cleaned dataset straight from this GitHub repo.
 // Power BI Desktop: Home > Transform data > New Source > Blank Query > Advanced Editor, paste this,
 // then rename the query to "Restaurants".
+// Power BI on the web: Create > Get data > Blank query, paste this, and name the query "Restaurants".
 // Working offline? Replace the Web.Contents(...) call with File.Contents("C:\path\to\zomato_bangalore_clean.csv").
 let
     Source = Csv.Document(

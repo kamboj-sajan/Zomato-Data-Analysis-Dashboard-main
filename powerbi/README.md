@@ -10,11 +10,17 @@ main README.
 | [`measures.dax`](measures.dax) | The five DAX measures the page uses. |
 | [`theme.json`](theme.json) | Report theme with the same colours as the Streamlit app. |
 
-> **Requirements:** Power BI Desktop (free) runs on Windows only. On a Mac, use a Windows
-> VM. Power BI on the web can also show the finished report, but it needs a work or
-> school account.
+There are two ways to build it:
 
-## Build steps (about 15 minutes)
+- **Power BI Desktop** is free but runs on Windows only. See
+  [Build in Power BI Desktop](#build-in-power-bi-desktop).
+- **Power BI on the web** works in any browser, including on a Mac. You need a work or
+  school account, because Microsoft doesn't accept personal emails like Gmail. See
+  [Build in Power BI on the web](#build-in-power-bi-on-the-web).
+
+## Build in Power BI Desktop
+
+This takes about 15 minutes.
 
 **1. Load the data**
 - Open Power BI Desktop and choose **Home → Transform data**.
@@ -48,6 +54,52 @@ On both charts:
 - Turn off the "Sum of" auto-titles.
 - Name the charts "Share rated 4.0+, by cost for two" and "…split by table booking".
 
+## Build in Power BI on the web
+
+This takes about 20 minutes. The web editor can do everything this page needs, but some
+menus are in different places from Desktop.
+
+**1. Load the data**
+- Sign in at [app.powerbi.com](https://app.powerbi.com) with your work or school account.
+- Choose **Create → Get data**. This opens Power Query in the browser.
+- The easiest way in is **Blank query**: paste the whole of `load_data.pq` and continue.
+  This also adds the price-band columns.
+- If Blank query isn't offered, choose **Text/CSV** and enter this URL as the file path:
+  `https://raw.githubusercontent.com/kamboj-sajan/Zomato-Data-Analysis-Dashboard-main/main/data/zomato_bangalore_clean.csv`
+- If you're asked how to sign in to the data source, choose **Anonymous**.
+- Name the query **`Restaurants`**.
+- At the last step, choose **Create a semantic model only**. This opens the model editor.
+
+**2. Switch to editing mode**
+- The model opens in Viewing mode. Use the toggle at the top right to switch to **Editing**.
+- From here, changes save automatically and there is no undo. Version history can restore
+  an earlier state.
+
+**3. Add the price-band columns (only if you used Text/CSV)**
+- Select the `Restaurants` table and choose **New column**.
+- Add `Price Band`, then `Price Band Order`, from the bottom of `measures.dax`.
+
+**4. Sort the price bands in order**
+- Select the **Price Band** column.
+- In the **Properties** pane, set **Sort by column** to **Price Band Order**.
+
+**5. Add the measures**
+- Select the table and choose **New measure**.
+- Add the five measures from `measures.dax` one at a time, and set each one's format in the
+  **Properties** pane.
+
+**6. Build the page**
+- Choose **New report**. The report editor opens in a new tab.
+- Build the same layout as step 5 of the Desktop guide.
+- The theme is optional. If **View → Themes → Browse for themes** isn't there, colour the
+  table-booking chart by hand in **Format → Columns → Colors**: `Yes` = `#2A78D6`,
+  `No` = `#EB6834`.
+- **Save** the report.
+
+**If a button is greyed out:** some organisations switch off model editing on the web.
+Hover over the button to see the reason. If your school or employer has turned it off, use
+Power BI Desktop on a Windows PC instead.
+
 ## Check your numbers
 
 With no filters applied, the visuals should match the Streamlit app exactly.
@@ -73,5 +125,10 @@ chart: **Restaurant Count is greater than or equal to 20**.
 
 ## Saving
 
-Save the file as `powerbi/zomato_overview.pbix` and commit it. A screenshot of the page in
-the main README helps visitors who don't have Power BI.
+- **Desktop:** save the file as `powerbi/zomato_overview.pbix` and commit it.
+- **Web:** the report is saved in your Power BI workspace, not in this repo. Export it with
+  **File → Export → PDF**, or take a screenshot, and commit that as
+  `powerbi/zomato_overview.png`.
+
+Either way, add a screenshot of the page to the main README so visitors without Power BI
+can see it.
