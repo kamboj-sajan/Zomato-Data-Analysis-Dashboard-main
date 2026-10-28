@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.DS_Store
+
+# Raw Kaggle export (574 MB) — see scripts/prepare_data.py
+zomato.csv
