@@ -84,13 +84,17 @@ menus are in different places from Desktop.
 - In the **Properties** pane, set **Sort by column** to **Price Band Order**.
 
 **5. Add the measures**
-- Select the table and choose **New measure**.
-- Add the five measures from `measures.dax` one at a time, and set each one's format in the
+- Click the `Restaurants` table name, not a measure inside it, and choose **New measure**.
+  The formula bar should start with `Measure =`. If it shows a different formula, you're
+  editing an existing measure, and pasting over it causes a "circular dependency" error.
+- Add the measures from `measures.dax` one at a time, and set each one's format in the
   **Properties** pane.
 
 **6. Build the page**
 - Choose **New report**. The report editor opens in a new tab.
 - Build the same layout as step 5 of the Desktop guide.
+- If the Restaurant Count card shows "9K", put `Restaurant Count Label` from `measures.dax`
+  on the card instead. It shows the full number, 9,359.
 - The theme is optional. If **View → Themes → Browse for themes** isn't there, colour the
   table-booking chart by hand in **Format → Columns → Colors**: `Yes` = `#2A78D6`,
   `No` = `#EB6834`.

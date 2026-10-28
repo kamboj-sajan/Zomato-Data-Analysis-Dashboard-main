@@ -11,6 +11,10 @@ Rated 4.0+ % = DIVIDE ( [Top Rated Count], [Restaurant Count] )      // Percenta
 
 Median Cost for Two = MEDIAN ( Restaurants[cost_for_two] )           // Custom format: ₹#,0
 
+// The newer Card visual shortens large numbers ("9K") and may not offer Display units.
+// Put this text version on that card instead to show the full number (9,359).
+Restaurant Count Label = FORMAT ( [Restaurant Count], "#,0" )
+
 
 // ---- Calculated columns: only if you loaded the CSV with the Text/CSV connector ----
 // load_data.pq already adds these two columns, so skip them if you used it.
