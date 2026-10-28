@@ -1,0 +1,12 @@
+// DAX measures for the "Restaurants" table (Modeling > New measure, one at a time).
+// Set the format shown after each measure in Measure tools > Format.
+
+Restaurant Count = COUNTROWS ( Restaurants )                         // Whole number, thousands separator
+
+Avg Rating = AVERAGE ( Restaurants[rate] )                           // Decimal, 2 places
+
+Top Rated Count = CALCULATE ( COUNTROWS ( Restaurants ), Restaurants[rate] >= 4 )
+
+Rated 4.0+ % = DIVIDE ( [Top Rated Count], [Restaurant Count] )      // Percentage, 0 places
+
+Median Cost for Two = MEDIAN ( Restaurants[cost_for_two] )           // Custom format: ₹#,0
